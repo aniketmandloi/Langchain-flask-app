@@ -1,3 +1,6 @@
+#Below is the code for Week 3 Assignment.
+#And I have also attached the loom video for demo of my project but in generated response my limit is acceded for openai api call so please change the key to you api key then it should work well. THANK YOU!
+
 from flask import Flask, render_template, request, jsonify
 import openai
 
