@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LangChain Response Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        div {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 300px;
+            padding: 5px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        h2 {
+            margin-top: 30px;
+        }
+
+        p {
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>LangChain Response Generator</h1>
+    <div>
+        <label for="prompt">Enter your prompt:</label>
+        <input type="text" id="prompt" />
+        <button onclick="getResponse()">Get Response</button>
+    </div>
+    <div>
+        <h2>Generated Response:</h2>
+        <p id="response"></p>
+    </div>
+
+    <script>
+        function getResponse() {
+            const prompt = document.getElementById("prompt").value;
+
+            // Make a POST request to the Flask app
+            fetch("/get_response", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ prompt: prompt }),
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                // Display the generated response on the frontend
+                document.getElementById("response").innerText = data.response;
+            })
+            .catch((error) => console.error("Error:", error));
+        }
+    </script>
+</body>
+</html>
