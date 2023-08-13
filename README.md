@@ -1,5 +1,7 @@
 # Langchain-flask-app
-clone this repository and please change Openapi key with your api key.
+My Api Key got expired so i m not getting the responses from AI model So I will not be able to provide Loom Video
+Please Consider this code 
+clone this repository and please change Openapi key with your api key, It should Work Fine.
 
 Install Required Python Packages:
     
