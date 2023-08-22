@@ -55,3 +55,8 @@ Conducting End-to-End Testing
 Ensure your Flask application is running.
 
     python test_chatbot.py
+
+Credits
+This project was developed by Aniket Mandloi. Feel free to contact me for any inquiries or feedback.
+
+Feel free to customize and expand upon this README to include more detailed instructions, screenshots, acknowledgments, and any additional information relevant to your project.
