@@ -60,6 +60,15 @@ def generate_response(prompt):
             temperature=0.7,  # Adjust the temperature for randomness in the response
         ).choices[0].text
 
+        # Filter Responses
+        for filter_phrase in response_filters:
+            response = response.replace(filter_phrase, "[FILTERED]")
+
+        # Log the query and response in the log file
+        with open(log_file, 'a') as f:
+            f.write(f"User Query: {user_prompt}\n")
+            f.write(f"AI Response: {response}\n\n")
+
         return response
 
     except Exception as e:
