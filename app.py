@@ -8,22 +8,26 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import psycopg2
 from psycopg2 import sql
 from psycopg2.extras import DictCursor
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://YOUR_DATABASE_USER:YOUR_DATABASE_PASSWORD@YOUR_DATABASE_HOST/YOUR_DATABASE_NAME'
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 # Set up your OpenAI API key
 openai.api_key = "YOUR_OPENAI_API_KEY"
 
-# Initializing sentiment analyzer
+# Initialize sentiment analyzer
 sentiment_analyzer = SentimentIntensityAnalyzer()
 
-# Initializing PostgreSQL connection
-conn = psycopg2.connect(
-    host="YOUR_DATABASE_HOST",
-    database="YOUR_DATABASE_NAME",
-    user="YOUR_DATABASE_USER",
-    password="YOUR_DATABASE_PASSWORD"
-)
+class ChatbotData(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    query = db.Column(db.String(256))
+    response = db.Column(db.String(256))
+    timestamp = db.Column(db.DateTime, default=db.func.current_timestamp())
+
 
 def generate_response(prompt):
     try:
