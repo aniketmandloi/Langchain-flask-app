@@ -5,7 +5,7 @@ clone this repository and please change Openapi key with your api key, It should
 
 Install Required Python Packages:
     
-    pip install Flask openai vaderSentiment psycopg2-binary Flask-Migrate
+    pip install Flask openai vaderSentiment psycopg2-binary Flask-Migrate requests
 
 
 Set Up PostgreSQL:
@@ -50,3 +50,8 @@ Create a table to store conversations and a vector column:
 Exit the PostgreSQL prompt:
     
     \q
+
+Conducting End-to-End Testing
+Ensure your Flask application is running.
+
+    python test_chatbot.py
