@@ -5,7 +5,7 @@ clone this repository and please change Openapi key with your api key, It should
 
 Install Required Python Packages:
     
-    pip install Flask openai vaderSentiment psycopg2-binary
+    pip install Flask openai vaderSentiment psycopg2-binary Flask-Migrate
 
 
 Set Up PostgreSQL:
