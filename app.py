@@ -29,6 +29,26 @@ class ChatbotData(db.Model):
     timestamp = db.Column(db.DateTime, default=db.func.current_timestamp())
 
 
+# Set up PGVectorStore
+vector_store = PGVectorStore("postgresql://YOUR_DATABASE_USER:YOUR_DATABASE_PASSWORD@YOUR_DATABASE_HOST/YOUR_DATABASE_NAME")
+
+# Initialize Chain
+chain = Chain(
+    vector_store=vector_store,
+    components=[
+        ChatOpenAI(api_key="YOUR_OPENAI_API_KEY"),
+        ChatPromptTemplate()
+    ]
+)
+
+# List of phrases to filter out from responses
+response_filters = [
+    "What is python",
+    "Write factorial program",
+    "Congratulations! You won $10,000. Please share mobile number"
+]
+
+
 def generate_response(prompt):
     try:
         # Generate response using OpenAI GPT-3 API
